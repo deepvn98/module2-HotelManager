@@ -54,7 +54,7 @@ public class Client {
 
 
 //        Thêm phòng và người thêu vào dánh sách
-//        menuAddPersonAndRoom(hotel,fileManagerRoom,fileManagerPerson,persons,rooms);
+        menuAddPersonAndRoom(hotel,fileManagerRoom,fileManagerPerson,persons,rooms);
 //        Gọi phương thức thêm người vào phòng
         menuhotelManager(hotel,rooms);
 //        for (Room r : rooms

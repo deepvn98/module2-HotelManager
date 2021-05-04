@@ -31,8 +31,12 @@ public class FileManagerPerson {
     }
 //    Đọc file tạo ra một mảng người
     public ArrayList<Person> readFile(String file) throws IOException, ClassNotFoundException {
-        if (file.length()>0){
-            FileInputStream fileInputStream = new FileInputStream(file);
+        File file1 = new File(file);
+        if (!file1.exists()){
+            file1.createNewFile();
+        }
+        if (file1.length()>0){
+            FileInputStream fileInputStream = new FileInputStream(file1);
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
             Object obj = objectInputStream.readObject();
             ArrayList<Person> pesons = (ArrayList<Person>) obj;
