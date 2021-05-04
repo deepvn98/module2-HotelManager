@@ -22,51 +22,58 @@ public class ManagerHotel {
         this.rooms = rooms;
         this.persons = persons;
     }
-    public void addPersonAtRoom(String id,int dayInHotel) throws IOException {
+
+    public void addPersonAtRoom(String id, int dayInHotel) throws IOException {
         getPersonByID(id);
-        if (getPersonByID(id) == null){
+        if (getPersonByID(id) == null) {
             System.err.print("Không tồn tại");
         }
-        if (getPersonByID(id)!= null){
+        if (getPersonByID(id) != null) {
             getRoom();
-            if (getRoom()!=null){
-                getRoom().setPerson(getPersonByID(id));
+            if (getRoom() != null) {
                 getRoom().setNumberdayinhotel(dayInHotel);
-               FileManagerRoom fileManagerRoom =  FileManagerRoom.getINSTANCE("Sáng");
+                getRoom().setPerson(getPersonByID(id));
+                FileManagerRoom fileManagerRoom = FileManagerRoom.getINSTANCE("Sáng");
                 fileManagerRoom.writeFile(rooms);
             }
         }
 
     }
-//    thêm người vào mảng người
-    public ArrayList<Person> addPerson(Person person){
+
+    //    thêm người vào mảng người
+    public ArrayList<Person> addPerson(Person person) {
         persons.add(person);
         return persons;
     }
-//    Tìm người trong mảng người bằng id
-    public Person getPersonByID(String id){
+
+    //    Tìm người trong mảng người bằng id
+    public Person getPersonByID(String id) {
         Person person = null;
-        for (int i = 0; i < persons.size();i++){
-            if (persons.get(i).getId().equalsIgnoreCase(id)){
-                person= persons.get(i);
+        for (int i = 0; i < persons.size(); i++) {
+            if (persons.get(i).getId().equalsIgnoreCase(id)) {
+                person = persons.get(i);
                 return person;
             }
-        }return null;
+        }
+        return null;
     }
-//    Thêm phòng vào mảng phòng
-    public ArrayList<Room> addRoom(Room r){
+
+    //    Thêm phòng vào mảng phòng
+    public ArrayList<Room> addRoom(Room r) {
         rooms.add(r);
         return rooms;
     }
-//    Tìm phòng trống
-    public Room getRoom(){
+
+    //    Tìm phòng trống
+    public Room getRoom() {
         Room room = null;
-       for (int i = 0; i< rooms.size();i++){
-           if (rooms.get(i).getPerson() == null){
-               room = rooms.get(i);
-               return room;
-           }
-       }return null;
+        for (int i = 0; i < rooms.size(); i++) {
+            if (rooms.get(i).getPerson() == null) {
+                room = rooms.get(i);
+                return room;
+            }
+        }
+        return null;
     }
 
     public String getName() {

@@ -13,7 +13,7 @@ import java.util.Scanner;
 public class Client {
     public static void main(String[] args) {
         FileManagerRoom fileManagerRoom = FileManagerRoom.getINSTANCE("sáng");
-        FileManagerPerson  fileManagerPerson = FileManagerPerson.getINSTANCE("sáng");
+        FileManagerPerson fileManagerPerson = FileManagerPerson.getINSTANCE("sáng");
         ArrayList<Person> persons = new ArrayList<>();
         try {
             persons = fileManagerPerson.readFile("person.txt");
@@ -24,13 +24,13 @@ public class Client {
         }
         ArrayList<Room> rooms = new ArrayList<>();
         try {
-            rooms = fileManagerRoom.readFile("room.txt");
+            rooms = fileManagerRoom.readFile("room.dat");
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        ManagerHotel hotel = new ManagerHotel("Sáng",rooms,persons);
+        ManagerHotel hotel = new ManagerHotel("Sáng", rooms, persons);
 
 
 //  Thêm người vào mảng người
@@ -56,11 +56,11 @@ public class Client {
 //        Thêm phòng và người thêu vào dánh sách
 //        menuAddPersonAndRoom(hotel,fileManagerRoom,fileManagerPerson,persons,rooms);
 //        Gọi phương thức thêm người vào phòng
-        menuhotelManager(hotel);
-        for (Room r:rooms
-             ) {
-            System.out.println(r);
-        }
+        menuhotelManager(hotel,rooms);
+//        for (Room r : rooms
+//        ) {
+//            System.out.println(r);
+//        }
 
     }
 
@@ -102,7 +102,7 @@ public class Client {
                     Scanner scanner2 = new Scanner(System.in);
                     number = scanner2.nextInt();
                     int arr[] = new int[number];
-                    for (int i = 0; i < arr.length;i++ ) {
+                    for (int i = 0; i < arr.length; i++) {
                         System.out.print("Phòng thứ " + (i + 1));
                         System.out.println();
                         hotel.addRoom(nhapTTRoom());
@@ -111,20 +111,21 @@ public class Client {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                    }break;
+                    }
+                    break;
 
                 }
-                case 3:
-                    {
+                case 3: {
                     check = false;
                     break;
                 }
             }
-        }while (check) ;
+        } while (check);
 
     }
-//    Menu
-    public static void menuhotelManager(ManagerHotel hotel){
+
+    //    Menu
+    public static void menuhotelManager(ManagerHotel hotel,ArrayList<Room>rooms) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Nhấn 1: thêm người vào phòng");
         System.out.println("Nhấn 2: ");
@@ -136,43 +137,44 @@ public class Client {
         do {
             System.out.print("Nhập sự lựa chọn:");
             int choice = scanner.nextInt();
-            switch (choice){
-                case 1:
-                {
-                    Scanner scanner1 =new Scanner(System.in);
+            switch (choice) {
+                case 1: {
+                    Scanner scanner1 = new Scanner(System.in);
                     System.out.print("Nhập id khách hàng:");
                     String id = scanner1.nextLine();
                     System.out.print("Số ngày khách muốn ở: ");
-                    Scanner  scanner2 = new Scanner(System.in);
+                    Scanner scanner2 = new Scanner(System.in);
                     int dayInHotel = scanner2.nextInt();
                     try {
-                        hotel.addPersonAtRoom(id,dayInHotel);
+                        hotel.addPersonAtRoom(id, dayInHotel);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                     break;
                 }
-                case 2:
-                {
+                case 2: {
                     break;
                 }
-                case 3:
-                {
+                case 3: {
                     break;
                 }
-                case 4:
-                {
+                case 4: {
+                    for (Room r : rooms
+                    ) {
+                        System.out.println(r);
+                    }
                     break;
-                } case 5:
-                {
-                    check=false;
+                }
+                case 5: {
+                    check = false;
                     break;
                 }
             }
-        }while (check);
+        } while (check);
     }
-//    Nhâp thông tin người
-    public static Person nhapTTPerson(){
+
+    //    Nhâp thông tin người
+    public static Person nhapTTPerson() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter name: ");
         String name = scanner.nextLine();
@@ -182,11 +184,12 @@ public class Client {
         Scanner scanner2 = new Scanner(System.in);
         System.out.print("Enter ID: ");
         String id = scanner2.nextLine();
-        Person person = new Person(name,age,id);
+        Person person = new Person(name, age, id);
         return person;
     }
-//    Nhập thông tin room
-    public static Room nhapTTRoom(){
+
+    //    Nhập thông tin room
+    public static Room nhapTTRoom() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter Room name: ");
         String name = scanner.nextLine();
@@ -196,7 +199,7 @@ public class Client {
         Scanner scanner2 = new Scanner(System.in);
         System.out.print("Enter PriceRoom: ");
         double price = scanner2.nextDouble();
-        Room room = new Room(name,typeRoom,price);
+        Room room = new Room(name, typeRoom, price);
         return room;
     }
 }

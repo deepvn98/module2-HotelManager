@@ -8,6 +8,7 @@ public class Room implements Serializable {
     private String typeRoom;
     private double roomPrice;
     private Person person;
+
     public Room() {
     }
 
@@ -72,11 +73,13 @@ public class Room implements Serializable {
     public void setTypeRoom(String typeRoom) {
         this.typeRoom = typeRoom;
     }
-    public double getAmountMoney(){
+
+    public double getAmountMoney() {
         return numberdayinhotel * roomPrice;
     }
-    public void showInfor(){
-        System.out.printf("\n%-20s %-20s %-20s %-20s %-20s",name,numberdayinhotel,typeRoom,roomPrice,person);
+
+    public void showInfor() {
+        System.out.printf("\n%-20s %-20s %-20s %-20s %-20s", name, numberdayinhotel, typeRoom, roomPrice, person);
     }
 
     @Override
