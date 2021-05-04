@@ -72,8 +72,7 @@ public class ManagerHotel {
                 room = rooms.get(i);
                 return room;
             }
-        }
-        return null;
+        } return null;
     }
 
     public String getName() {

@@ -32,27 +32,6 @@ public class Client {
         }
         ManagerHotel hotel = new ManagerHotel("Sáng", rooms, persons);
 
-
-//  Thêm người vào mảng người
-//        hotel.addPerson( nhapTTPerson());
-//        try {
-//            fileManagerPerson.writeFile(persons);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        for (Person p:persons
-//             ) {
-//            System.out.println(p);
-//        }
-//Thêm room vào mảng room
-//        hotel.addRoom(nhapTTRoom());
-//        try {
-//            fileManagerRoom.writeFile(rooms);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
-
 //        Thêm phòng và người thêu vào dánh sách
         menuAddPersonAndRoom(hotel,fileManagerRoom,fileManagerPerson,persons,rooms);
 //        Gọi phương thức thêm người vào phòng
