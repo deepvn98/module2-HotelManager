@@ -2,7 +2,10 @@ package controller;
 
 import model.Person;
 import model.Room;
+import storage.FileManagerRoom;
+import view.Client;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -19,7 +22,20 @@ public class ManagerHotel {
         this.rooms = rooms;
         this.persons = persons;
     }
-    public void addPersonAtRoom(){
+    public void addPersonAtRoom(String id,int dayInHotel) throws IOException {
+        getPersonByID(id);
+        if (getPersonByID(id) == null){
+            System.err.print("Không tồn tại");
+        }
+        if (getPersonByID(id)!= null){
+            getRoom();
+            if (getRoom()!=null){
+                getRoom().setPerson(getPersonByID(id));
+                getRoom().setNumberdayinhotel(dayInHotel);
+               FileManagerRoom fileManagerRoom =  FileManagerRoom.getINSTANCE("Sáng");
+                fileManagerRoom.writeFile(rooms);
+            }
+        }
 
     }
 //    thêm người vào mảng người
@@ -27,19 +43,30 @@ public class ManagerHotel {
         persons.add(person);
         return persons;
     }
+//    Tìm người trong mảng người bằng id
+    public Person getPersonByID(String id){
+        Person person = null;
+        for (int i = 0; i < persons.size();i++){
+            if (persons.get(i).getId().equalsIgnoreCase(id)){
+                person= persons.get(i);
+                return person;
+            }
+        }return null;
+    }
 //    Thêm phòng vào mảng phòng
     public ArrayList<Room> addRoom(Room r){
         rooms.add(r);
         return rooms;
     }
-//    Thêm người vào phòng
-    public void addPersonatRoom(Person person){
+//    Tìm phòng trống
+    public Room getRoom(){
+        Room room = null;
        for (int i = 0; i< rooms.size();i++){
            if (rooms.get(i).getPerson() == null){
-               rooms.get(i).setPerson(person);
-               break;
+               room = rooms.get(i);
+               return room;
            }
-       }
+       }return null;
     }
 
     public String getName() {

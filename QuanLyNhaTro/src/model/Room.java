@@ -57,7 +57,7 @@ public class Room implements Serializable {
         this.roomPrice = roomPrice;
     }
 
-    public int getNumberdayinhotel() {
+    public int getNumberdayinhotel(int dayInHotel) {
         return numberdayinhotel;
     }
 
